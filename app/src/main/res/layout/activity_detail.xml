@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+
+    <ImageView
+        android:id="@+id/imageDitail"
+        android:layout_width="290dp"
+        android:layout_height="273dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/nameDetailText"
+        android:layout_width="349dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="220dp"
+        android:text="name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/detailText"
+        android:layout_width="347dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="28dp"
+        android:text="detail"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameDetailText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

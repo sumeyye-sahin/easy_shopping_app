@@ -1,6 +1,8 @@
 package com.sumeyyesahin.retrofitkotlintekrartekrar.models
 
-data class Product(
+import java.io.Serializable
+
+data class Product (
     val brand: String,
     val category: String,
     val description: String,
@@ -12,4 +14,4 @@ data class Product(
     val stock: Int,
     val thumbnail: String,
     val title: String
-)
+) : Serializable

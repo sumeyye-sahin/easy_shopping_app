@@ -31,6 +31,7 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var binding: ActivityFeedBinding
     private lateinit var rvAdapter: RvAdapter
+    private lateinit var productList : List<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,7 @@ class FeedActivity : AppCompatActivity() {
             }
             if(response.isSuccessful && response.body() != null){
                 withContext(Dispatchers.Main){
-                    val productList: List<Product> = response.body()!!.products
+                    productList = response.body()!!.products
                     binding.apply {
                         progressBar.visibility = View.GONE
                         rvAdapter = RvAdapter(productList)
@@ -61,16 +62,17 @@ class FeedActivity : AppCompatActivity() {
 
                     }
                 }
-            }}
+            }
+            productList.forEach {
+                println(productList[0].title)
+            }
+
+
+
+        }
 
     }
 
-    fun touchbleAreaClicked (view: View){
-        val intent= Intent(this,DetailActivity::class.java)
-        startActivity(intent)
-    //    finish()
-
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -88,6 +90,8 @@ class FeedActivity : AppCompatActivity() {
             val intent= Intent(this,MainActivity::class.java)
             startActivity(intent)
             finish()
+
+
         }
         return super.onOptionsItemSelected(item)
     }

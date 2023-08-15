@@ -21,10 +21,8 @@ class SignUpActivity : AppCompatActivity() {
         auth= Firebase.auth
 
     }
-    fun singupClick (view: View) {
+    fun denemeClicked (view: View) {
 
-
-//-----------------------------------------------------------------------//
         val email = binding.emailText.text.toString()
         val password = binding.passwordText.text.toString()
 
@@ -35,7 +33,8 @@ class SignUpActivity : AppCompatActivity() {
         }
         else {
             auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                val intent = Intent(this, FeedActivity::class.java)
+
+                val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }.addOnFailureListener {

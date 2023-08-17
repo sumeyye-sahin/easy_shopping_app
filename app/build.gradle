@@ -19,6 +19,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    dataBinding{
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -71,5 +74,8 @@ dependencies {
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    //ImageSlider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
 
 }

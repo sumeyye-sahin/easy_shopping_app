@@ -25,40 +25,44 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true) //tooolbarda geri gitmek için
+        supportActionBar!!.title=""
 
 
-        val selectedProduct = chosenProduct //Singleton{
+        val selectedProduct = chosenProduct //Singleton
 
 
         selectedProduct?.let {
 
 
-               binding.textView4.text = it.title
-               // binding.titleDetail.text = it.title
-                binding.textView5.text = it.description
+            binding.textView4.text = it.title
+            // binding.titleDetail.text = it.title
+            binding.textView5.text = it.description
 
-                binding.textView6.text = "Fiyat: ${it.price.toString()} TL"
+            binding.textView6.text = "Fiyat: ${it.price.toString()} TL"
 
 
-              //  Picasso.get().load(it.image).into(scrollView.addView(binding.scrollView))
+            //  Picasso.get().load(it.image).into(scrollView.addView(binding.scrollView))
 
             val imageList = ArrayList<SlideModel>() // Create image list
 
 // imageList.add(SlideModel("String Url" or R.drawable)
 // imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
 
-
-            for (i in it.images){
-                imageList.add(SlideModel(i))
+            if (it.images != null || it.images.size != 0  ) {
+                for (i in it.images) {
+                    imageList.add(SlideModel(i))
+                }
+            } else {
+                imageList.add(SlideModel(R.drawable.noimage))
             }
-
 
             val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
             imageSlider.setImageList(imageList)
 
 
         }
-        }
     }
+}
 
 

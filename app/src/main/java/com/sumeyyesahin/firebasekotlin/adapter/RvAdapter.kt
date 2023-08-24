@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.sumeyyesahin.firebasekotlin.DetailActivity
+import com.sumeyyesahin.firebasekotlin.R
 import com.sumeyyesahin.firebasekotlin.Singleton
 import com.sumeyyesahin.firebasekotlin.databinding.RvItemBinding
 import com.sumeyyesahin.retrofitkotlintekrartekrar.models.Product
@@ -28,7 +29,8 @@ class RvAdapter(private val productList: List<Product>) : RecyclerView.Adapter<R
         val currentItem = productList[position]
         holder.binding.apply {
             textView.text = currentItem.title
-            Picasso.get().load(currentItem.thumbnail).into(imageView)
+            Picasso.get().load(currentItem.thumbnail).error(R.drawable.noimage).into(imageView)
+
             textView2.text = "Fiyat: ${currentItem.price.toString()} TL"
         }
 

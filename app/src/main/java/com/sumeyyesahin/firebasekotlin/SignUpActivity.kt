@@ -18,7 +18,12 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true) //tooolbarda geri gitmek için
+        supportActionBar!!.title=""
+
         auth= Firebase.auth
+
 
     }
     fun denemeClicked (view: View) {

@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Email and password cannot be empty!",Toast.LENGTH_LONG).show()
         } else {
             auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
-                val intent= Intent(this,FeedActivity::class.java)
+                val intent= Intent(this,SplashActivity2::class.java)
                 startActivity(intent)
                 finish()
             }.addOnFailureListener{

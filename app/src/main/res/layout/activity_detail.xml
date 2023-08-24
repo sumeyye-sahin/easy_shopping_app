@@ -11,9 +11,12 @@
 
    >
 
+
+
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="547dp">
+        android:layout_height="520dp"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,12 +26,12 @@
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/image_slider"
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
                 app:iss_auto_cycle="true"
                 app:iss_delay="1000"
                 app:iss_period="1000"
-                app:iss_text_align="CENTER">
+                app:iss_text_align="Center">
 
             </com.denzcoskun.imageslider.ImageSlider>
 
@@ -36,7 +39,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D36306"
+                android:background="#FFBA68C8"
                 android:padding="10dp"
                 android:text="TextView"
                 android:textColor="@color/white"
@@ -70,7 +73,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        android:background="#D36306"
+        android:background="#FFBA68C8"
         android:textColor="@color/white"
         android:padding="10dp"
         android:textSize="20sp"

@@ -38,6 +38,18 @@ class FeedActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth= Firebase.auth
+        // burada table oluşturup
+
+     /*   try{
+
+            val database = this.openOrCreateDatabase("FavoriteProducts", MODE_PRIVATE,null)
+
+            database.execSQL("CREATE TABLE IF NOT EXISTS favoriteProducts(id INTEGER , isFavorite BOOLEAN)")
+
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }*/
 
         GlobalScope.launch (Dispatchers.IO) {
 
@@ -59,6 +71,7 @@ class FeedActivity : AppCompatActivity() {
                         recyclerView.adapter = rvAdapter
                         recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
 
+
                     }
                 }
             }
@@ -67,8 +80,10 @@ class FeedActivity : AppCompatActivity() {
             }
 
 
+         //burada o table doldurulacak.
 
         }
+
 
     }
 

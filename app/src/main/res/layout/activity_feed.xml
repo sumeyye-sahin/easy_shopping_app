@@ -25,7 +25,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/rv_item" />   <!-- rv_item her bir objemizin ne özelliklerini göstermek istiyorsak onun için ayırdığımız çizdiğimiz uı xml -->
 

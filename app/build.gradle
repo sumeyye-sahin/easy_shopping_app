@@ -78,4 +78,7 @@ dependencies {
     //ImageSlider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
 
+    //like button
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+
 }

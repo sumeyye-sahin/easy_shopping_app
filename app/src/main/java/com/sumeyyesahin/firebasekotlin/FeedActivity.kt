@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.sumeyyesahin.firebasekotlin.databinding.ActivityFeedBinding
 import com.sumeyyesahin.firebasekotlin.adapter.RvAdapter
+import com.sumeyyesahin.firebasekotlin.databinding.RvItemBinding
 import com.sumeyyesahin.retrofitkotlintekrartekrar.models.Product
 //import com.sumeyyesahin.firebasekotlin.models.Product
 //import com.sumeyyesahin.firebasekotlin.utils.RetrofitInstance
@@ -32,24 +35,19 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var rvAdapter: RvAdapter
     private lateinit var productList : List<Product>
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth= Firebase.auth
-        // burada table oluşturup
-
-     /*   try{
-
-            val database = this.openOrCreateDatabase("FavoriteProducts", MODE_PRIVATE,null)
-
-            database.execSQL("CREATE TABLE IF NOT EXISTS favoriteProducts(id INTEGER , isFavorite BOOLEAN)")
 
 
-        }catch (e:Exception){
-            e.printStackTrace()
-        }*/
+
+
+
 
         GlobalScope.launch (Dispatchers.IO) {
 
@@ -67,7 +65,8 @@ class FeedActivity : AppCompatActivity() {
                     productList = response.body()!!.products
                     binding.apply {
                         progressBar.visibility = View.GONE
-                        rvAdapter = RvAdapter(productList)
+                        Singleton.allProducts = productList
+                        rvAdapter = RvAdapter(Singleton.allProducts!!)
                         recyclerView.adapter = rvAdapter
                         recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
 
@@ -75,15 +74,14 @@ class FeedActivity : AppCompatActivity() {
                     }
                 }
             }
-            productList.forEach {
-                println(productList[0].title)
-            }
+            //        productList.forEach {
+            //          println(productList[0].title)
+            //    }
 
 
-         //burada o table doldurulacak.
+            //burada o table doldurulacak.
 
         }
-
 
     }
 

@@ -40,6 +40,8 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Enter E-mail"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFBA68C8"
         android:backgroundTint="#FFBA68C8"
@@ -52,12 +54,14 @@
         android:layout_width="371dp"
         android:layout_height="52dp"
         android:layout_marginTop="30dp"
-
+        android:layout_gravity="center"
+        android:gravity="center"
         android:ems="10"
         android:backgroundTint="#FFBA68C8"
         android:textColorHint="#FFBA68C8"
         android:hint="Enter Password"
         android:inputType="textPassword"
+
         app:layout_constraintStart_toStartOf="@+id/emailText"
         app:layout_constraintTop_toBottomOf="@+id/emailText" />
 

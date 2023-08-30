@@ -19,9 +19,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:layout_width="366dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="" />
+
+                <CheckBox
+                    android:id="@+id/detailCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selektor_wishlist_item"
+                    app:useMaterialThemeColors="false" />
+
+            </LinearLayout>
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/image_slider"
                 android:layout_width="match_parent"
@@ -38,22 +58,34 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:background="#FFBA68C8">
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="357dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
                     android:text="TextView"
                     android:textColor="@color/white"
-
                     android:textSize="24sp"
                     android:textStyle="bold"
-
                     />
 
+                <TextView
+                    android:id="@+id/textViewBrand"
+                    android:layout_width="113dp"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="2dp"
+                    android:text="TextView"
+                    android:layout_gravity="end"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+
+                />
 
             </LinearLayout>
 

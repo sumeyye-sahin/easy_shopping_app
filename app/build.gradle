@@ -58,6 +58,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     implementation("com.google.firebase:firebase-database-ktx")
 
@@ -86,5 +87,6 @@ dependencies {
 
     //like button
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+
 
 }

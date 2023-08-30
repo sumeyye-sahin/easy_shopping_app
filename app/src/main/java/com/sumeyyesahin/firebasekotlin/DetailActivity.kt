@@ -3,20 +3,28 @@ package com.sumeyyesahin.firebasekotlin
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.CheckBox
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
-import com.squareup.picasso.Picasso
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.sumeyyesahin.firebasekotlin.adapter.RvAdapter
 import com.sumeyyesahin.firebasekotlin.databinding.ActivityDetailBinding
 import com.sumeyyesahin.firebasekotlin.Singleton.chosenProduct
-import com.sumeyyesahin.retrofitkotlintekrartekrar.models.Product
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var rvAdapter: RvAdapter
     private lateinit var binding: ActivityDetailBinding
+    // Firebase Referansları
+    private lateinit var database: FirebaseDatabase
+    private lateinit var favoriteRef: DatabaseReference
 
+    // CheckBox
+    private lateinit var checkBox: CheckBox
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +38,13 @@ class DetailActivity : AppCompatActivity() {
 
 
         val selectedProduct = chosenProduct //Singleton
+        val currentItem = selectedProduct
+        val checkBox = binding.detailCheckBox
+        val database = Firebase.database.reference
+        var auth = Firebase.auth
+
+
+        val currentUser = auth.currentUser
 
 
         selectedProduct?.let {
@@ -61,6 +76,49 @@ class DetailActivity : AppCompatActivity() {
             imageSlider.setImageList(imageList)
 
 
+        }
+
+        checkBox.setOnCheckedChangeListener { checkBox, isChecked ->
+            if (isChecked) {
+                // CheckBox işaretlendiğinde yapılacak işlemler
+
+                currentItem!!.isFavorite = true
+
+                //database işlemleri
+                // databesi bu id ile insert
+
+                database.child(currentItem!!.id.toString()+currentUser!!.uid)
+                    .setValue(FavoriteProduct(currentUser!!.uid, currentItem.id))
+
+            } else {
+                // CheckBox işareti kaldırıldığında yapılacak işlemler
+
+                currentItem!!.isFavorite = false
+
+                // databesi bu id ile delete
+                database.child(currentItem.id.toString()+currentUser!!.uid).removeValue()
+
+
+            }
+        }
+
+// CheckBox başlangıç durumunu false olarak ayarla
+
+
+// Veritabanından ürünün favori olarak işaretlenip işaretlenmediğini kontrol et
+        val favoriteProductRef = database.child(currentItem!!.id.toString() + currentUser!!.uid)
+
+        favoriteProductRef.get().addOnSuccessListener { dataSnapshot ->
+            if (dataSnapshot.exists()) {
+                // Veritabanında bu ürün varsa, CheckBox'ı işaretleyin
+                checkBox.isChecked = true
+            } else {
+                // Veritabanında bu ürün yoksa, CheckBox'ı boş bırakın
+                checkBox.isChecked = false
+            }
+        }.addOnFailureListener {
+            // Veritabanı hatası durumunda CheckBox'ı boş bırakın
+            checkBox.isChecked = false
         }
     }
 }

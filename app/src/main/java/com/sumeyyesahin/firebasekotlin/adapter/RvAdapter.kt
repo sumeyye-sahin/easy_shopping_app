@@ -37,7 +37,6 @@ class RvAdapter(private val productList: List<Product>) :
         val checkBox = holder.binding.cbHeart
 
 
-
         //  notifyDataSetChanged() ----> Crashlytics hatası için eklendi
         holder.binding.apply {
             textView.text = currentItem.title
@@ -63,7 +62,7 @@ class RvAdapter(private val productList: List<Product>) :
                 //database işlemleri
                 // databesi bu id ile insert
 
-                database.child(currentItem.id.toString()+currentUser!!.uid)
+                database.child(currentItem.id.toString() + currentUser!!.uid)
                     .setValue(FavoriteProduct(currentUser!!.uid, currentItem.id))
 
             } else {
@@ -72,7 +71,7 @@ class RvAdapter(private val productList: List<Product>) :
                 currentItem.isFavorite = false
 
                 // databesi bu id ile delete
-                database.child(currentItem.id.toString()+currentUser!!.uid).removeValue()
+                database.child(currentItem.id.toString() + currentUser!!.uid).removeValue()
 
 
             }
@@ -81,10 +80,10 @@ class RvAdapter(private val productList: List<Product>) :
         checkBox.isChecked = false
 
         // veritabanında bu id eklimi
-        var getData = database.child(currentItem.id.toString()+currentUser!!.uid)
+        var getData = database.child(currentItem.id.toString() + currentUser!!.uid)
 
         getData.get().addOnSuccessListener {
-            if (it.exists())             {
+            if (it.exists()) {
                 checkBox.isChecked = true
             }
         }
@@ -106,7 +105,3 @@ class RvAdapter(private val productList: List<Product>) :
 
 
 }
-
-
-
-

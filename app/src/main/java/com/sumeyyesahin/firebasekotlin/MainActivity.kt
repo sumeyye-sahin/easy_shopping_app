@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var auth : FirebaseAuth
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {   // onCreate aktivite ilk oluşturulduğunda çalışır
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         val view= binding.root
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         auth= Firebase.auth
 
 
-        val currentUser= auth.currentUser
+        val currentUser= auth.currentUser // eğer kullanıcı varsa currentUser değişkenine atar
         if(currentUser != null){
             val intent= Intent(this,FeedActivity::class.java)
             startActivity(intent)
@@ -62,24 +62,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.logoutmenu, menu)
-        return true
-    }
-
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(item.itemId == R.id.logoutmenu){
-            auth.signOut()
-
-            val intent= Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
 }

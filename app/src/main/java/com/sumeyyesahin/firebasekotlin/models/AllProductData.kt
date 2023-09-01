@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class AllProductData(
     val limit: Int,
-    val products: List<Product>,
+    val products: ArrayList<Product>,
     val skip: Int,
     val total: Int
 ) : Serializable

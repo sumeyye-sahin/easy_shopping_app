@@ -3,27 +3,28 @@ package com.sumeyyesahin.firebasekotlin.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.sumeyyesahin.firebasekotlin.DetailActivity
-import com.sumeyyesahin.firebasekotlin.FavoriteProduct
+import com.sumeyyesahin.firebasekotlin.models.FavoriteProduct
 import com.sumeyyesahin.firebasekotlin.R
 import com.sumeyyesahin.firebasekotlin.Singleton
 import com.sumeyyesahin.firebasekotlin.databinding.RvItemBinding
 import com.sumeyyesahin.retrofitkotlintekrartekrar.models.Product
 
-class RvAdapter(private val productList: List<Product>) :
+class RvAdapter(private var productList: List<Product>) :
     RecyclerView.Adapter<RvAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
-
+    fun setFilteredList(mList: List<Product>){
+        this.productList= mList
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(RvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -33,7 +34,7 @@ class RvAdapter(private val productList: List<Product>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = Singleton.allProducts!!.get(position)
+        val currentItem = this.productList.get(position)
         val checkBox = holder.binding.cbHeart
 
 
@@ -43,11 +44,11 @@ class RvAdapter(private val productList: List<Product>) :
             Picasso.get().load(currentItem.thumbnail).error(R.drawable.noimage).into(imageView)
             textView2.text = "Fiyat: ${currentItem.price.toString()} TL"
 
+
         }
 
 
         val database = Firebase.database.reference
-
         var auth = Firebase.auth
 
 
@@ -59,8 +60,6 @@ class RvAdapter(private val productList: List<Product>) :
 
                 currentItem.isFavorite = true
 
-                //database işlemleri
-                // databesi bu id ile insert
 
                 database.child(currentItem.id.toString() + currentUser!!.uid)
                     .setValue(FavoriteProduct(currentUser!!.uid, currentItem.id))

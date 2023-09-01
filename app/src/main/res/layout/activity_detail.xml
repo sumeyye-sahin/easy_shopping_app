@@ -22,38 +22,35 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="366dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="" />
 
-                <CheckBox
-                    android:id="@+id/detailCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/selektor_wishlist_item"
-                    app:useMaterialThemeColors="false" />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:gravity="right">
+          <CheckBox
+              android:id="@+id/detailCheckBox"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:button="@drawable/selektor_wishlist_item"
+              android:background="@color/transparent_grey"
+              app:useMaterialThemeColors="false" />
 
-            </LinearLayout>
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/image_slider"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:iss_auto_cycle="true"
-                app:iss_delay="1000"
-                app:iss_period="1000"
-                app:iss_text_align="Center">
+      </LinearLayout>
+      <com.denzcoskun.imageslider.ImageSlider
+          android:id="@+id/image_slider"
+          android:layout_width="match_parent"
+          android:layout_height="220dp"
+          app:iss_auto_cycle="true"
+          app:iss_delay="1000"
+          app:iss_period="1000"
+          app:iss_text_align="Center">
 
 
 
-            </com.denzcoskun.imageslider.ImageSlider>
+      </com.denzcoskun.imageslider.ImageSlider>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,10 +72,10 @@
 
                 <TextView
                     android:id="@+id/textViewBrand"
-                    android:layout_width="113dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="10dp"
-                    android:paddingBottom="2dp"
+                    android:paddingBottom="10dp"
                     android:text="TextView"
                     android:layout_gravity="end"
                     android:textColor="@color/white"

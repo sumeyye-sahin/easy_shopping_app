@@ -46,47 +46,51 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
+        auth = Firebase.auth // anlamı: auth, Firebase.auth ile oluşturuldu (Firebase kimlik doğrulama)
 
 
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener { // anlamı: searchView, SearchView.OnQueryTextListener ile oluşturuldu  (arama görünümü)
+            override fun onQueryTextSubmit(query: String?): Boolean { // anlamı: onQueryTextSubmit, arama sorgusu gönderildiğinde çalışır (metin gönderildi)
+                return false // anlamı: false, döndürür
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return true
+            override fun onQueryTextChange(newText: String?): Boolean { // anlamı: onQueryTextChange, arama sorgusu değiştirildiğinde çalışır (yeni metin)
+                filterList(newText) // anlamı: filterList, newText ile filtrelenir (yeni metin)
+                return true // anlamı: true, döndürür
             }
 
         })
     }
 
-    private fun filterList(query: String?) {
+    private fun filterList(query: String?) { // anlamı: filterList, sorgu ile filtrelenir (sorgu)
 
-        if (query != null) {
-            val filteredList = ArrayList<Product>()
-            for (i in productList) {
+        if (query != null) { // anlamı: sorgu null değilse
+            val filteredList = ArrayList<Product>() // anlamı: filteredList, ArrayList ile oluşturuldu (filtrelenmiş liste)
+            for (i in productList) { // anlamı: i, productList ile oluşturuldu (ürün listesi)
                 if (i.title.lowercase(Locale.ROOT).contains(query)) {
-                    filteredList.add(i)
+                    // anlamı: i.title.lowercase(Locale.ROOT).contains(query), i.title.lowercase(Locale.ROOT) ile oluşturuldu (i.title.lowercase(Locale.ROOT) içerir (sorgu))
+
+                    filteredList.add(i) // anlamı: filteredList.add(i), filteredList.add ile oluşturuldu (filtrelenmiş liste ekle)
                 }
             }
 
-            if (filteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
+            if (filteredList.isEmpty()) { // anlamı: filteredList.isEmpty(), filteredList.isEmpty ile oluşturuldu (filtrelenmiş liste boş)
+                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show() // anlamı: Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show() ile oluşturuldu (Veri bulunamadı)
+
+            } else { // anlamı: değilse
                 rvAdapter.setFilteredList(filteredList)
+            // anlamı: rvAdapter.setFilteredList(filteredList), rvAdapter.setFilteredList ile oluşturuldu (filtrelenmiş liste ayarla)
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        GlobalScope.launch(Dispatchers.IO) {
-
-            val response = try {
-                RetrofitInstance.api.getProducts()
+    override fun onResume() { // anlamı: onResume, devam et (devam et)
+        super.onResume() // anlamı: super.onResume(), super.onResume ile oluşturuldu (devam et)
+        GlobalScope.launch(Dispatchers.IO) { // anlamı: GlobalScope.launch(Dispatchers.IO), GlobalScope.launch ile oluşturuldu (GlobalScope başlat)
+        //GlobalScope, bir uygulamanın yaşam döngüsü boyunca yaşar ve uygulama kapatıldığında sona erer.
+            val response = try { // anlamı: response, try ile oluşturuldu (yanıt)
+                RetrofitInstance.api.getProducts() // anlamı: RetrofitInstance.api.getProducts ile oluşturuldu (ürünleri al)
             } catch (e: Exception) {
                 Toast.makeText(applicationContext, "app error ${e.message}", Toast.LENGTH_SHORT)
                     .show()
@@ -97,18 +101,18 @@ class FeedActivity : AppCompatActivity() {
                 return@launch
             }
 
-            if (response.isSuccessful && response.body() != null) {
-                withContext(Dispatchers.Main) {
+            if (response.isSuccessful && response.body() != null) { // anlamı: (başarılı ise ve yanıt boş değilse)
+                withContext(Dispatchers.Main) { // açıklaması: Dispatchers.Main, ana iş parçacığı için bir bağlamdır.
                     productList = response.body()!!.products
                     Singleton.allProducts = productList
                     dataEdit()
                     binding.apply {
-                        progressBar.visibility = View.GONE
-                        rvAdapter = RvAdapter(productList)
-                        recyclerView.adapter = rvAdapter
-                        recyclerView.setHasFixedSize(true)
+                        progressBar.visibility = View.GONE //görünürlük: GONE, görünmez
+                        rvAdapter = RvAdapter(productList) // anlamı: rvAdapter, RvAdapter ile oluşturuldu (ürün listesi)
+                        recyclerView.adapter = rvAdapter // anlamı: recyclerView.adapter, recyclerView.adapter ile oluşturuldu (recyclerView ayarla)
+                        recyclerView.setHasFixedSize(true) // setHasFixedSize, sabit boyutlu ayarla
                         recyclerView.layoutManager =
-                            StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+                            StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)//StringgeredGridLayoutManager: Sütun sayısı 2, dikey yönde düzenle
                     }
                 }
             }

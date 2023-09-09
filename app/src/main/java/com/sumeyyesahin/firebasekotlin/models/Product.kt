@@ -2,7 +2,7 @@ package com.sumeyyesahin.retrofitkotlintekrartekrar.models
 
 import java.io.Serializable
 
-data class Product (
+data class Product ( // anlamı: ürün verileri (nesneleri aktarabilmek için)
     val brand: String,
     val category: String,
     val description: String,
@@ -15,4 +15,4 @@ data class Product (
     val thumbnail: String,
     val title: String,
     var isFavorite: Boolean=false
-) : Serializable
+) : Serializable // anlamı: serileştirilebilir yap (nesneleri aktarabilmek için)

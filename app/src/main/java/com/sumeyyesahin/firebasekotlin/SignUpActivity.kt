@@ -28,22 +28,23 @@ class SignUpActivity : AppCompatActivity() {
     }
     fun denemeClicked (view: View) {
 
-        val email = binding.emailText.text.toString()
-        val password = binding.passwordText.text.toString()
+        val email = binding.emailText.text.toString()  // e posta değişkeni oluşturuldu (emailText'ten alınır)
+        val password = binding.passwordText.text.toString() // şifre değişkeni oluşturuldu (passwordText'ten alınır)
 
-        if (email.equals("") || password.equals("")) {
+        if (email.equals("") || password.equals("")) { // eğer e posta veya şifre boş ise
 
 
-            Toast.makeText(this, "Email and password cannot be empty!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Email and password cannot be empty!", Toast.LENGTH_LONG).show() // hata mesajı gösterilir
         }
         else {
             auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+                // e posta ve şifre ile giriş yapılır (başarılı olursa)
 
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }.addOnFailureListener {
-                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                val intent = Intent(this,MainActivity::class.java) // intent oluşturuldu (bu aktiviteden MainActivity'e geçiş yapmak için)
+                startActivity(intent) // intent başlatıldı (MainActivity'e geçiş yapmak için)
+                finish() // bu aktivite kapatıldı (bu aktivite) (geri dönüşte bu aktiviteye gelinmez)
+            }.addOnFailureListener { // e posta ve şifre ile giriş yapılır (başarısız olursa)
+                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show() // hata mesajı gösterilir
             }
         }
     }}

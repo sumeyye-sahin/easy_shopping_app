@@ -19,50 +19,50 @@ class RvAdapter(private var productList: List<Product>) :
     RecyclerView.Adapter<RvAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
     }
-    fun setFilteredList(mList: List<Product>){
+    fun setFilteredList(mList: List<Product>){ // SearchView için
         this.productList= mList
-        notifyDataSetChanged()
-    }
+        notifyDataSetChanged() // SearchView için //anlamı: değişiklikleri bildir
+    }     //  notifyDataSetChanged() ----> Crashlytics hatası için eklendi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(RvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        // anlamı : RvItemBinding ile bağla, parent'ı inflate et, false yapma
     }
 
     override fun getItemCount(): Int {
-        return productList.size
+        return productList.size // anlamı: ürün listesinin boyutu
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = this.productList.get(position)
-        val checkBox = holder.binding.cbHeart
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {// anlamı: tutucuyu bağla, pozisyonu al
+        val currentItem = this.productList.get(position) // anlamı: bu ürün listesinin bu pozisyonundaki ürünü al
+        val checkBox = holder.binding.cbHeart // anlamı: tutucudaki kalp kutusunu al
 
 
-        //  notifyDataSetChanged() ----> Crashlytics hatası için eklendi
-        holder.binding.apply {
-            textView.text = currentItem.title
-            Picasso.get().load(currentItem.thumbnail).error(R.drawable.noimage).into(imageView)
-            textView2.text = "Fiyat: ${currentItem.price.toString()} TL"
+
+        holder.binding.apply { // anlamı: tutucuya uygula
+            textView.text = currentItem.title // anlamı: tutucudaki metin alanına bu ürünün başlığını yaz
+            Picasso.get().load(currentItem.thumbnail).error(R.drawable.noimage).into(imageView) // anlamı: Picasso ile bu ürünün resmini al, hata olursa noimage koy, imageview'e koy
+            textView2.text = "Fiyat: ${currentItem.price.toString()} TL" // anlamı: tutucudaki metin alanına bu ürünün fiyatını yaz
 
 
         }
 
 
-        val database = Firebase.database.reference
-        var auth = Firebase.auth
+        val database = Firebase.database.reference // anlamı: veritabanı referansını al
+        var auth = Firebase.auth // anlamı: auth'u al
 
 
-        val currentUser = auth.currentUser
+        val currentUser = auth.currentUser // anlamı: şu anki kullanıcıyı al
 
-        checkBox.setOnCheckedChangeListener { checkBox, isChecked ->
+        checkBox.setOnCheckedChangeListener { checkBox, isChecked -> // anlamı: kalp kutusuna tıklandığında
             if (isChecked) {
                 // CheckBox işaretlendiğinde yapılacak işlemler
 
-                currentItem.isFavorite = true
+                currentItem.isFavorite = true // anlamı: bu ürün favori olarak işaretlendi
 
 
-                database.child(currentItem.id.toString() + currentUser!!.uid)
-                    .setValue(FavoriteProduct(currentUser!!.uid, currentItem.id))
+                database.child(currentItem.id.toString() + currentUser!!.uid) // anlamı: veritabanında bu id ile bu kullanıcıyı al
+                    .setValue(FavoriteProduct(currentUser!!.uid, currentItem.id)) // anlamı: bu kullanıcı id'si ile bu ürün id'sini veritabanına ekle
 
             } else {
                 // CheckBox işareti kaldırıldığında yapılacak işlemler
@@ -76,27 +76,27 @@ class RvAdapter(private var productList: List<Product>) :
             }
         }
 
-        checkBox.isChecked = false
+        checkBox.isChecked = false // anlamı: kalp kutusu işaretli değil
 
         // veritabanında bu id eklimi
-        var getData = database.child(currentItem.id.toString() + currentUser!!.uid)
+        var getData = database.child(currentItem.id.toString() + currentUser!!.uid) // anlamı: veritabanında bu id ile bu kullanıcıyı al
 
-        getData.get().addOnSuccessListener {
-            if (it.exists()) {
-                checkBox.isChecked = true
+        getData.get().addOnSuccessListener { // anlamı: başarılı olursa
+            if (it.exists()) { // anlamı: varsa
+                checkBox.isChecked = true // anlamı: kalp kutusu işaretli
             }
         }
-            .addOnFailureListener {
-                checkBox.isChecked = false
+            .addOnFailureListener { // anlamı: başarısız olursa
+                checkBox.isChecked = false // anlamı: kalp kutusu işaretli değil
             }
 
 
 
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            Singleton.chosenProduct = currentItem
-            holder.itemView.context.startActivity(intent)
+        holder.itemView.setOnClickListener { // anlamı: tutucuya tıklandığında
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java) // anlamı: intent ile bu tutucunun bağlı olduğu context'te DetailActivity'e git
+            Singleton.chosenProduct = currentItem // anlamı: Singleton ile seçilen ürün bu ürün
+            holder.itemView.context.startActivity(intent) // anlamı: intenti başlat
         }
 
 

@@ -24,43 +24,38 @@ class MainActivity : AppCompatActivity() {
         val view= binding.root
         setContentView(view)
 
-        auth= Firebase.auth
+        auth= Firebase.auth // firebase auth nesnesi oluşturuldu
 
 
         val currentUser= auth.currentUser // eğer kullanıcı varsa currentUser değişkenine atar
-        if(currentUser != null){
-            val intent= Intent(this,FeedActivity::class.java)
-            startActivity(intent)
-            finish()
+        if(currentUser != null){ // eğer kullanıcı varsa
+            val intent= Intent(this,FeedActivity::class.java) // intent oluşturuldu (bu aktiviteden FeedActivity'e geçiş yapmak için)
+            startActivity(intent) // intent başlatıldı (FeedActivity'e geçiş yapmak için)
+            finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır (bu aktiviteyi kapatır)
         }
     }
 
-    fun signupClick (view: View){
+    fun signupClick (view: View){ // anlamı: signupClick, view ile tıklanır (görünüm ile tıklanır)
 
-        val intent= Intent(this,SignUpActivity::class.java)
-        startActivity(intent)
-       // finish()
-
+        val intent= Intent(this,SignUpActivity::class.java) // intent oluşturuldu (bu aktiviteden SignUpActivity'e geçiş yapmak için)
+        startActivity(intent) // intent başlatıldı (SignUpActivity'e geçiş yapmak için)
+       // finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır
     }
 
-    fun singinClick (view: View){
+    fun singinClick (view: View){ // anlamı: singinClick, view ile tıklanır (görünüm ile tıklanır)
+        val email= binding.emailText.text.toString() // e posta değişkeni oluşturuldu (emailText'ten alınır)
+        val password= binding.passwordText.text.toString() // şifre değişkeni oluşturuldu (passwordText'ten alınır)
 
-
-        val email= binding.emailText.text.toString()
-        val password= binding.passwordText.text.toString()
-
-        if(email.equals("") || password.equals("")){
+        if(email.equals("") || password.equals("")){ // eğer e posta veya şifre boş ise
             Toast.makeText(this,"Email and password cannot be empty!",Toast.LENGTH_LONG).show()
-        } else {
-            auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
-                val intent= Intent(this,SplashActivity2::class.java)
-                startActivity(intent)
-                finish()
-            }.addOnFailureListener{
-                Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
+        } else { // eğer e posta veya şifre boş değil ise
+            auth.signInWithEmailAndPassword(email,password).addOnSuccessListener { // e posta ve şifre ile giriş yapılır (başarılı olursa)
+                val intent= Intent(this,SplashActivity2::class.java) // intent oluşturuldu (bu aktiviteden SplashActivity2'e geçiş yapmak için)
+                startActivity(intent) // intent başlatıldı (SplashActivity2'e geçiş yapmak için)
+                finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır (bu aktiviteyi kapatır)
+            }.addOnFailureListener{ // e posta ve şifre ile giriş yapılır (başarısız olursa)
+                Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show() // hata mesajı gösterilir
             }
         }
     }
-
-
 }

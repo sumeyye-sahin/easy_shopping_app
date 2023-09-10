@@ -22,8 +22,8 @@ class RvAdapter(private var productList: List<Product>) :
     }
     fun setFilteredList(mList: List<Product>){ // SearchView için
         this.productList= mList
-        notifyDataSetChanged() // SearchView için //anlamı: değişiklikleri bildir
-    }     //  notifyDataSetChanged() ----> Crashlytics hatası için eklendi
+        notifyDataSetChanged() // SearchView için 
+    }     //  notifyDataSetChanged() ----> Adaptörü yenile demek
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(RvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         // anlamı : RvItemBinding ile bağla, parent'ı inflate et, false yapma

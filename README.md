@@ -33,3 +33,11 @@ faydalanılır. Ve her kullanıcıya ait favori ürün kaydı firebase realtime 
 
 ![untitled](https://github.com/sumeyye-sahin/E_Marketing_and_login-/assets/58478124/dc5a9cf0-3c04-4965-b466-b08628536b94)
 
+
+
+
+
+![untitled2](https://github.com/sumeyye-sahin/E_Marketing_and_login-/assets/58478124/378ae8d8-8c5e-40b8-86f0-7c92fa514be0)
+
+
+

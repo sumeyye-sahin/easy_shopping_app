@@ -30,3 +30,6 @@ faydalanılır. Ve her kullanıcıya ait favori ürün kaydı firebase realtime 
 9- Kullanıcılara bildirim gönderilmesi Firabase Mesaaging ile sağlanır
 
 10- Search işlemi ürünün ismine göre yapılır.
+
+![untitled](https://github.com/sumeyye-sahin/E_Marketing_and_login-/assets/58478124/dc5a9cf0-3c04-4965-b466-b08628536b94)
+

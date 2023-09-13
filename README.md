@@ -53,3 +53,9 @@ Bu proje, staj sürecinde öğrenilen Android Kotlin ve Firebase yapılarını k
 <div align="center">
   <img src="https://github.com/sumeyye-sahin/E_Marketing_and_login-/assets/58478124/70d02b22-db9c-4b0e-8237-b9cb30832787" alt="Screenshot 7" width="400">
 </div>
+
+
+
+<div align="center">
+  <img src="https://github.com/sumeyye-sahin/E_Marketing_and_login-/assets/58478124/7d0b84fe-9f45-4d60-a263-cf1441a5b256" alt="Screenshot 8" width="400">
+</div>

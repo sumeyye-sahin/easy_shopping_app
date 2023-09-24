@@ -1,4 +1,4 @@
-package com.sumeyyesahin.firebasekotlin
+package com.sumeyyesahin.firebasekotlin.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
                 // e posta ve şifre ile giriş yapılır (başarılı olursa)
 
-                val intent = Intent(this,MainActivity::class.java) // intent oluşturuldu (bu aktiviteden MainActivity'e geçiş yapmak için)
+                val intent = Intent(this, MainActivity::class.java) // intent oluşturuldu (bu aktiviteden MainActivity'e geçiş yapmak için)
                 startActivity(intent) // intent başlatıldı (MainActivity'e geçiş yapmak için)
                 finish() // bu aktivite kapatıldı (bu aktivite) (geri dönüşte bu aktiviteye gelinmez)
             }.addOnFailureListener { // e posta ve şifre ile giriş yapılır (başarısız olursa)

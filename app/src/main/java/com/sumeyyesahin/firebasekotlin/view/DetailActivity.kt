@@ -1,17 +1,14 @@
-package com.sumeyyesahin.firebasekotlin
+package com.sumeyyesahin.firebasekotlin.view
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CheckBox
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.sumeyyesahin.firebasekotlin.adapter.RvAdapter
+import com.sumeyyesahin.firebasekotlin.R
 import com.sumeyyesahin.firebasekotlin.databinding.ActivityDetailBinding
 import com.sumeyyesahin.firebasekotlin.Singleton.chosenProduct
 import com.sumeyyesahin.firebasekotlin.models.FavoriteProduct

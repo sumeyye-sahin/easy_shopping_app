@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFBA68C8"
-    tools:context=".FavoriteProductsActivity">
+    tools:context=".view.FavoriteProductsActivity">
 
 
 

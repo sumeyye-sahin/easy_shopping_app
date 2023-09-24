@@ -1,11 +1,8 @@
-package com.sumeyyesahin.firebasekotlin
+package com.sumeyyesahin.firebasekotlin.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser= auth.currentUser // eğer kullanıcı varsa currentUser değişkenine atar
         if(currentUser != null){ // eğer kullanıcı varsa
-            val intent= Intent(this,FeedActivity::class.java) // intent oluşturuldu (bu aktiviteden FeedActivity'e geçiş yapmak için)
+            val intent= Intent(this, FeedActivity::class.java) // intent oluşturuldu (bu aktiviteden FeedActivity'e geçiş yapmak için)
             startActivity(intent) // intent başlatıldı (FeedActivity'e geçiş yapmak için)
             finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır (bu aktiviteyi kapatır)
         }
@@ -37,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     fun signupClick (view: View){ // anlamı: signupClick, view ile tıklanır (görünüm ile tıklanır)
 
-        val intent= Intent(this,SignUpActivity::class.java) // intent oluşturuldu (bu aktiviteden SignUpActivity'e geçiş yapmak için)
+        val intent= Intent(this, SignUpActivity::class.java) // intent oluşturuldu (bu aktiviteden SignUpActivity'e geçiş yapmak için)
         startActivity(intent) // intent başlatıldı (SignUpActivity'e geçiş yapmak için)
        // finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır
     }
@@ -50,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Email and password cannot be empty!",Toast.LENGTH_LONG).show()
         } else { // eğer e posta veya şifre boş değil ise
             auth.signInWithEmailAndPassword(email,password).addOnSuccessListener { // e posta ve şifre ile giriş yapılır (başarılı olursa)
-                val intent= Intent(this,SplashActivity2::class.java) // intent oluşturuldu (bu aktiviteden SplashActivity2'e geçiş yapmak için)
+                val intent= Intent(this, SplashActivity2::class.java) // intent oluşturuldu (bu aktiviteden SplashActivity2'e geçiş yapmak için)
                 startActivity(intent) // intent başlatıldı (SplashActivity2'e geçiş yapmak için)
                 finish() // geri dönüşü olmayan bir aktiviteye geçiş yapmak için kullanılır (bu aktiviteyi kapatır)
             }.addOnFailureListener{ // e posta ve şifre ile giriş yapılır (başarısız olursa)

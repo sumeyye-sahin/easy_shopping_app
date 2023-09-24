@@ -1,9 +1,10 @@
-package com.sumeyyesahin.firebasekotlin
+package com.sumeyyesahin.firebasekotlin.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.sumeyyesahin.firebasekotlin.Singleton
 import com.sumeyyesahin.firebasekotlin.adapter.RvFavAdapter
 import com.sumeyyesahin.firebasekotlin.databinding.ActivityFavoriteProductsBinding
 

@@ -1,4 +1,4 @@
-package com.sumeyyesahin.firebasekotlin
+package com.sumeyyesahin.firebasekotlin.service
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -7,10 +7,11 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
-import android.widget.RemoteViews.RemoteView
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.sumeyyesahin.firebasekotlin.R
+import com.sumeyyesahin.firebasekotlin.view.FeedActivity
 
 
 const val channel_id = "notification_channel"
